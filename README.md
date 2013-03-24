@@ -1,4 +1,4 @@
-edit-bookmark-plus
-==================
+open-regedit-key
+================
 
-Edit Bookmark Plus - Firefox Extension
+OpenRegEditKey - Firefox Extension
