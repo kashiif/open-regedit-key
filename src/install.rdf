@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+ xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+		<Description about="urn:mozilla:install-manifest">
+    <em:id>openregeditkey@kashiif.com</em:id>
+    <em:type>2</em:type>
+    <em:name>Open RegEdit Key</em:name>
+    <em:bootstrap>true</em:bootstrap>
+    <em:version>__version__</em:version>
+    <em:creator>Kashif Iqbal Khan</em:creator>
+    <em:description>Open selected registry in the registry editor from context menu.</em:description>
+    <em:homepageURL>http://www.kashiif.com/firefox-extensions/open-regedit-key/</em:homepageURL>
+		<em:iconURL>resource://open-regedit-key/icon.png</em:iconURL>  
+		<em:icon64URL>resource://open-regedit-key/icon.png</em:icon64URL>  
+		
+    <em:targetApplication>
+      <Description>
+        <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+        <!-- firefox -->
+        <em:minVersion>4.0</em:minVersion>
+        <em:maxVersion>15.0a1</em:maxVersion>
+      </Description>
+    </em:targetApplication>
+
+    <!-- SeaMonkey -->
+    <em:targetApplication>
+      <Description>
+        <em:id>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</em:id>
+        <em:minVersion>2.2</em:minVersion>
+        <em:maxVersion>2.12a1</em:maxVersion>
+      </Description>
+    </em:targetApplication>
+  </Description>
+</RDF>
