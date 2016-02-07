@@ -53,10 +53,7 @@ var openRegeditKey = {
 	},
 
 	_getSelectedText: function(doc) {
-		var focusedWindow = doc.commandDispatcher.focusedWindow;
-		var searchStr = focusedWindow.getSelection.call(focusedWindow).toString();
-		//var searchStr = doc.commandDispatcher.focusedWindow.getSelection.toString();
-		return searchStr;
+		return openRegeditKey._getActiveWindow().content.getSelection().toString();
 	},
 
 	_normalizeString: function(theText)	{
