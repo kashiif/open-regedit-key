@@ -11,11 +11,25 @@ var openRegeditKey = {
 	},
   
 	init: function() {
-		this._consoleService = Components.classes['@mozilla.org/consoleservice;1'].getService(Components.interfaces.nsIConsoleService);
+		var Cc = Components.classes, Ci = Components.interfaces;
+		//this._consoleService = Cc['@mozilla.org/consoleservice;1'].getService(Ci.nsIConsoleService);
 
-		var env = Components.classes['@mozilla.org/process/environment;1'].getService(Components.interfaces.nsIEnvironment);
+		var env = Cc['@mozilla.org/process/environment;1'].getService(Ci.nsIEnvironment);
 		var winDir = env.get('windir');
-		this._regEditPath = winDir +  (winDir.charAt(winDir.length-1) == '\\'? '' : '\\') + 'system32\\regedt32.exe';
+
+		if (winDir.charAt(winDir.length-1) != '\\') {
+			winDir += '\\';
+		}
+
+		this._regEditPath = winDir +  'regedit.exe'
+
+		var file = this.getFileObjectForPath(this._regEditPath);
+
+		if (file.exists()) {
+			return;
+		}
+
+		this._regEditPath = winDir +  'system32\\regedt32.exe';
 	},
 
 	bind: function(window) {
@@ -130,7 +144,7 @@ var openRegeditKey = {
 		}
 
   		//this.LOG('will open: ' + str);
-  		var cc = Components.classes, ci = Components.interfaces;
+		var cc = Components.classes, ci = Components.interfaces;
 
 		var wrk = cc['@mozilla.org/windows-registry-key;1'].createInstance(ci.nsIWindowsRegKey);
 		wrk.create(wrk.ROOT_KEY_CURRENT_USER, 'Software\\Microsoft\\Windows\\CurrentVersion\\Applets\\Regedit', wrk.ACCESS_WRITE);
@@ -138,8 +152,7 @@ var openRegeditKey = {
 		wrk.close();	
 
 		// create an nsILocalFile for the executable
-		var file = cc['@mozilla.org/file/local;1'].createInstance(ci.nsILocalFile);
-		file.initWithPath(openRegeditKey._regEditPath);
+		var file = this.getFileObjectForPath(this._regEditPath);
 
 		// create an nsIProcess and run
 		var process = cc['@mozilla.org/process/util;1'].createInstance(ci.nsIProcess);
@@ -189,4 +202,11 @@ var openRegeditKey = {
 		wrk.close();
 		return strHive + '\\' + arrKeysAndValues[0] + '\\' + strVerifiedKey;
 	},
+
+	getFileObjectForPath: function(path) {
+		var file = Components.classes['@mozilla.org/file/local;1'].getService(Components.interfaces.nsILocalFile);
+		file.initWithPath(path);
+		return file;
+	}
+
 };
