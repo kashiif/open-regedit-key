@@ -60,7 +60,7 @@ var openRegeditKey = {
 		var arrHivesAbbr = new Array ('HKCC',                'HKLM',               'HKCR',              'HKCU',              'HKU');
 
 		// remove whitespaces
-		theText = theText.replace(/\n/g,'').replace(/\r/g, '').replace(/\t/g, '');
+		theText = theText.replace(/(\r|\n|\t)/g, '');
 
 		// fix a common mistake :-)
 		theText = theText.replace(/Current Version/g, 'CurrentVersion');
@@ -74,7 +74,7 @@ var openRegeditKey = {
 
 		// replace abbreviations
 		for (var i = 0; i < this._arrHives.length; i++) {
-			var r = new RegExp(arrHivesAbbr[i]);
+			var r = new RegExp('^' + arrHivesAbbr[i], 'i');
 			theText = theText.replace(r, this._arrHives[i]);
 		}
 		
