@@ -9,7 +9,7 @@
     <em:version>__version__</em:version>
     <em:creator>Kashif Iqbal Khan</em:creator>
     <em:description>Open selected registry in the registry editor from context menu.</em:description>
-    <em:homepageURL>http://www.kashiif.com/firefox-extensions/open-regedit-key/</em:homepageURL>
+    <em:homepageURL></em:homepageURL>
 		<em:iconURL>resource://open-regedit-key/icon.png</em:iconURL>  
 		<em:icon64URL>resource://open-regedit-key/icon.png</em:icon64URL>  
 		
